@@ -30,9 +30,9 @@ const Home: NextPage = () => {
         <meta name="description" content="An app for shelter societies" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="m-2 flex flex-row justify-around gap-2">
+      <main className="m-2 flex flex-row justify-around gap-2">
         <Sidebar />
-        <main className="flex flex-row justify-evenly">
+        <div className="grid grid-cols-3 gap-2">
           {!animalsQuery.data ?? <div>Loading...</div>}
           {animalsQuery.data?.pages.map((page) =>
             page.items?.map((animal) => (
@@ -44,20 +44,20 @@ const Home: NextPage = () => {
               />
             ))
           )}
-        </main>
-        <button
-          onClick={async () => {
-            await addAnimal.mutateAsync({
-              name: "jojo",
-              description:
-                "Best bitch ever. Loves cuddles, snacks and long walks on the beach. Definitely recommend.",
-              type: "dog",
-            });
-          }}
-        >
-          add
-        </button>
-      </div>
+        </div>
+      </main>
+      <button
+        onClick={async () => {
+          await addAnimal.mutateAsync({
+            name: "jojo",
+            description:
+              "Best bitch ever. Loves cuddles, snacks and long walks on the beach. Definitely recommend.",
+            type: "dog",
+          });
+        }}
+      >
+        add
+      </button>
     </>
   );
 };
